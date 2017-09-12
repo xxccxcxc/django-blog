@@ -1,0 +1,5 @@
+# windows
+db.sqlite3
+
+# python
+*.py[cod]
