@@ -10,7 +10,6 @@ ply==3.10
 Pygments==2.2.0
 PyInstaller==3.2.1
 pyparsing==2.2.0
-pypiwin32==219
 python-dateutil==2.6.0
 pytz==2016.10
 requests==2.13.0
