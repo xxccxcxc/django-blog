@@ -17,6 +17,7 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 2
 
 '''
 def category(request, pk):
@@ -25,7 +26,7 @@ def category(request, pk):
     return render(request, 'blog/index.html', context={'post_list': post_list})
 '''
 
-class CategoryView(IndexView):
+class CategoryView(ListView):
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
