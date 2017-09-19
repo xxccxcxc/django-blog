@@ -5,7 +5,6 @@ import re
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', view.hello),
-    url(r'blog/', include('blog.urls')),
-    url(r'blog/', include('comments.urls'))
+    url(r'^', include('blog.urls')),
+    url(r'^', include('comments.urls'))
 ]
