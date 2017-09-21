@@ -3,3 +3,4 @@ db.sqlite3
 
 # python
 *.py[cod]
+fabfile.py
