@@ -1,6 +1,4 @@
-# windows
 db.sqlite3
-
-# python
+whoosh_index
 *.py[cod]
 fabfile.py
