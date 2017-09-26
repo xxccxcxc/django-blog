@@ -3,7 +3,9 @@ from django.http import HttpResponse
 from .models import Post, Category, Tag
 from comments.forms import CommentForm
 from django.views.generic import ListView, DetailView
+from django.utils.text import slugify
 import markdown
+from markdown.extensions.toc import TocExtension
 import pygments
 
 class IndexView(ListView):
@@ -79,11 +81,13 @@ class PostDetailView(DetailView):
 
     def get_object(self):
         post = super().get_object()
-        post.body = markdown.markdown(post.body, extensions=[
+        md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
-            'markdown.extensions.toc',
+            TocExtension(slugify=slugify)
         ])
+        post.body = md.convert(post.body)
+        post.toc = md.toc
         return post
 
     def get_context_data(self, **kwargs):
