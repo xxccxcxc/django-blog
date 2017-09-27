@@ -7,7 +7,8 @@ from django.utils.text import slugify
 import markdown
 from markdown.extensions.toc import TocExtension
 import pygments
-from haystack.generic_views import SearchView
+# from haystack.generic_views import SearchView
+from haystack.views import SearchView
 
 class IndexView(ListView):
     model = Post
@@ -53,7 +54,39 @@ class IndexView(ListView):
         return data
 
 class MySearchView(SearchView):
-    pass
+    def get_context(self):
+        context = super(MySearchView, self).get_context()
+        paginator = context.get('paginator')
+        page = context.get('page')
+        pagination_data = self.pagination_data(paginator, page)
+        context.update(pagination_data)
+        return context
+
+    def pagination_data(self, paginator, page):
+        left = []
+        right = []
+        left_has_more = right_has_more = first = last = False
+        lr_cnt = 2
+        page_number = page.number
+        total_pages = paginator.num_pages
+        page_range = paginator.page_range
+        if page_number > 1:
+            left = page_range[(page_number - lr_cnt - 1) if (page_number - lr_cnt - 1) > 0 else 0:page_number - 1]
+            left_has_more = (left[0] > 2)
+            first = (left[0] > 1)
+        if page_number < total_pages:
+            right = page_range[page_number:page_number + lr_cnt]
+            right_has_more = (right[-1] < total_pages - 1)
+            last = (right[-1] < total_pages)
+        data = {
+            'left': left,
+            'right': right,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+            'first': first,
+            'last': last,
+        }
+        return data
 
 class CategoryView(ListView):
     def get_queryset(self):
