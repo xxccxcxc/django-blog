@@ -7,6 +7,7 @@ from django.utils.text import slugify
 import markdown
 from markdown.extensions.toc import TocExtension
 import pygments
+from haystack.generic_views import SearchView
 
 class IndexView(ListView):
     model = Post
@@ -15,7 +16,7 @@ class IndexView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        context = super(ListView, self).get_context_data(**kwargs)
+        context = super(IndexView, self).get_context_data(**kwargs)
         paginator = context.get('paginator')
         page = context.get('page_obj')
         is_paginated = context.get('is_paginated')
@@ -51,22 +52,24 @@ class IndexView(ListView):
         }
         return data
 
+class MySearchView(SearchView):
+    pass
 
 class CategoryView(ListView):
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
-        return super(ListView, self).get_queryset().filter(category=cate)
+        return super(CategoryView, self).get_queryset().filter(category=cate)
 
 
 class ArchivesView(IndexView):
     def get_queryset(self):
-        return super(IndexView, self).get_queryset().filter(created_time__year=self.kwargs.get('year'),
+        return super(ArchivesView, self).get_queryset().filter(created_time__year=self.kwargs.get('year'),
                                              created_time__month=self.kwargs.get('month'))
 
 class TagView(IndexView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
-        return super(IndexView, self).get_queryset().filter(tags=tag)
+        return super(TagView, self).get_queryset().filter(tags=tag)
 
 
 class PostDetailView(DetailView):
@@ -75,12 +78,12 @@ class PostDetailView(DetailView):
     context_object_name = 'post'
 
     def get(self, request, *args, **kwargs):
-        response = super(DetailView, self).get(request, *args, **kwargs)
+        response = super(PostDetailView, self).get(request, *args, **kwargs)
         self.object.increase_views()
         return response
 
     def get_object(self):
-        post = super(DetailView, self).get_object()
+        post = super(PostDetailView, self).get_object()
         md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
@@ -91,7 +94,7 @@ class PostDetailView(DetailView):
         return post
 
     def get_context_data(self, **kwargs):
-        context = super(DetailView, self).get_context_data(**kwargs)
+        context = super(PostDetailView, self).get_context_data(**kwargs)
         form = CommentForm()
         comment_list = self.object.comment_set.all()
         context.update({
