@@ -245,6 +245,15 @@ img {
 	margin-bottom: 20px;
 }
 
+.entry-content a {
+	color: #337ab7;
+}
+
+.entry-content a:hover {
+	color: #337ab7;
+	text-decoration: underline;
+}
+
 .post-category::after,
 .post-date::after,
 .post-author::after,
