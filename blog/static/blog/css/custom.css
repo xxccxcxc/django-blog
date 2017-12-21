@@ -275,11 +275,11 @@ img {
 	font-size: 16px;
 }
 
-.entry-content a {
+.entry-content a:not(.more-link) {
 	color: #337ab7;
 }
 
-.entry-content a:hover {
+.entry-content a:hover:not(.more-link) {
 	color: #337ab7;
 	text-decoration: underline;
 }
