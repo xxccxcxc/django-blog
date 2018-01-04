@@ -32,49 +32,51 @@ hr {
 	border-top-color: #ddd;
 }
 
-.entry-content h1{
+.article-content h1{
 	margin-top: 31.2px;
 	margin-bottom: 31.2px;
 }
 
-.entry-content h2{
+.article-content h2{
 	margin-top: 25.8px;
 	margin-bottom: 25.8px;
 }
 
-.entry-content h3{
+.article-content h3{
 	margin-top: 20.4px;
 	margin-bottom: 20.4px;
 }
 
-.entry-content h4{
+.article-content h4{
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
 
-.entry-content h5{
+.article-content h5{
 	margin-top: 12px;
 	margin-bottom: 12px;
 }
 
-.entry-content h6{
+.article-content h6{
 	margin-top: 10.2px;
 	margin-bottom: 10.2px;
 }
 
-.entry-content p{
+.article-content p{
 	margin-bottom: 12px;
 	font-size: 16px;
 }
 
-.entry-content a:not(.more-link) {
+.article-content a:not(.more-link) {
 	color: #337ab7;
 }
 
-.entry-content a:hover:not(.more-link) {
+.article-content a:hover:not(.more-link) {
 	color: #337ab7;
 	text-decoration: underline;
 }
+
+
  
 body {
 	background-image: url(http://p1zbvcs07.bkt.clouddn.com/00001.jpg);
@@ -303,7 +305,7 @@ img {
 .entry-content{
 	font-size: 16px;
 	line-height: 1.6;
-	font-weight: 300;
+	font-weight: normal;
 	color: #000;
 }
 
