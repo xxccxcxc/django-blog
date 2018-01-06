@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 import markdown
 from django.utils.html import strip_tags
+import requests
 
 
 class Category(models.Model):
@@ -40,6 +41,16 @@ class Post(models.Model):
         self.views += 1
         self.save(update_fields=['views'])
 
+    def baidu_push(self):
+        url = 'http://data.zz.baidu.com/urls?site=www.xxccxcxc.top&token=oE6j072TMctOd1lt'
+        headers = {
+            'Content-Type': 'text/plain'
+        }
+        url_list = []
+        url_list.append('http://www.xxccxcxc.top/post/{}/'.format(self.pk))
+        data = '\n'.join(url_list)
+        response = requests.post(url, headers=headers, data=data)
+
     def save(self, *args, **kwargs):
         if not self.excerpt:
             md = markdown.Markdown(extension=[
@@ -49,6 +60,7 @@ class Post(models.Model):
             ])
             self.excerpt = strip_tags(md.convert(self.body))[:54]
         super(Post, self).save(*args, **kwargs)
+        self.baidu_push()
 
     class Meta:
         ordering = ['-created_time']
