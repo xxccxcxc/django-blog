@@ -42,14 +42,14 @@ class Post(models.Model):
         self.save(update_fields=['views'])
 
     def baidu_push(self):
-        url = 'http://data.zz.baidu.com/urls?site=www.xxccxcxc.top&token=oE6j072TMctOd1lt'
+        url = 'http://data.zz.baidu.com/urls?site=xxccxcxc.top&token=oE6j072TMctOd1lt'
         headers = {
             'Content-Type': 'text/plain'
         }
         url_list = []
-        url_list.append('http://www.xxccxcxc.top/post/{}/'.format(self.pk))
+        url_list.append('http://xxccxcxc.top/post/{}/'.format(self.pk))
         data = '\n'.join(url_list)
-        response = requests.post(url, headers=headers, data=data)
+        requests.post(url, headers=headers, data=data)
 
     def save(self, *args, **kwargs):
         if not self.excerpt:
