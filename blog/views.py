@@ -23,6 +23,7 @@ class IndexView(ListView):
         is_paginated = context.get('is_paginated')
         pagination_data = self.pagination_data(paginator, page, is_paginated)
         context.update(pagination_data)
+        context['title'] = '首页'
         return context
 
     def pagination_data(self, paginator, page, is_paginated):
@@ -53,6 +54,7 @@ class IndexView(ListView):
         }
         return data
 
+
 class MySearchView(SearchView):
     def get_context(self):
         context = super(MySearchView, self).get_context()
@@ -60,6 +62,7 @@ class MySearchView(SearchView):
         page = context.get('page')
         pagination_data = self.pagination_data(paginator, page)
         context.update(pagination_data)
+        context['title'] = '{} - 搜索结果'.format(self.query)
         return context
 
     def pagination_data(self, paginator, page):
@@ -88,10 +91,16 @@ class MySearchView(SearchView):
         }
         return data
 
+
 class CategoryView(IndexView):
     def get_queryset(self):
         cate = get_object_or_404(Category, pk=self.kwargs.get('pk'))
         return super(CategoryView, self).get_queryset().filter(category=cate)
+
+    def get_context_data(self, **kwargs):
+        context = super(CategoryView, self).get_context_data(**kwargs)
+        context['title'] = '{} - 分类'.format(get_object_or_404(Category, pk=self.kwargs.get('pk')).name)
+        return context
 
 
 class ArchivesView(IndexView):
@@ -99,10 +108,21 @@ class ArchivesView(IndexView):
         return super(ArchivesView, self).get_queryset().filter(created_time__year=self.kwargs.get('year'),
                                              created_time__month=self.kwargs.get('month'))
 
+    def get_context_data(self, **kwargs):
+        context = super(ArchivesView, self).get_context_data(**kwargs)
+        context['title'] = '{} 年 {} 月 - 归档'.format(self.kwargs.get('year'), self.kwargs.get('month'))
+        return context
+
+
 class TagView(IndexView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
+
+    def get_context_data(self, **kwargs):
+        context = super(TagView, self).get_context_data(**kwargs)
+        context['title'] = '{} - 标签'.format(get_object_or_404(Tag, pk=self.kwargs.get('pk')).name)
+        return context
 
 
 class PostDetailView(DetailView):

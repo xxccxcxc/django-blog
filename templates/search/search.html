@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load highlight %}
 
+{% block title %}
+<title>{{ title }} - xxcc</title>
+{% endblock title %}
+
 {% block main %}
     {% if query %}
         {% for result in page.object_list %}
@@ -63,6 +67,6 @@
 			</div>
 		{% endif %}
     {% else %}
-        请输入搜索关键词，例如 django
+        请输入搜索关键词！
     {% endif %}
 {% endblock main %}
