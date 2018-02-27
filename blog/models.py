@@ -19,6 +19,9 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ['-name']
+
 
 class Post(models.Model):
     title = models.CharField(max_length=70)
