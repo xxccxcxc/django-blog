@@ -9,6 +9,8 @@ from markdown.extensions.toc import TocExtension
 import pygments
 # from haystack.generic_views import SearchView
 from haystack.views import SearchView
+import requests
+import json
 
 class IndexView(ListView):
     model = Post
@@ -24,6 +26,8 @@ class IndexView(ListView):
         pagination_data = self.pagination_data(paginator, page, is_paginated)
         context.update(pagination_data)
         context['title'] = '首页'
+        hitokoto = self.get_hitokoto()
+        context.update(hitokoto)
         return context
 
     def pagination_data(self, paginator, page, is_paginated):
@@ -53,6 +57,15 @@ class IndexView(ListView):
             'last': last,
         }
         return data
+
+    def get_hitokoto(self):
+        response = requests.get('https://sslapi.hitokoto.cn/?c=a')
+        dict = json.loads(response.text)
+        hitokoto = {
+            'hitokoto': dict['hitokoto'],
+            'from': dict['from'],
+        }
+        return hitokoto
 
 
 class MySearchView(SearchView):
