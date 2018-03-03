@@ -168,5 +168,17 @@ class PostDetailView(DetailView):
             'form': form,
             'comment_list': comment_list,
         })
+        hitokoto = self.get_hitokoto()
+        context.update(hitokoto)
         return context
+
+
+    def get_hitokoto(self):
+        response = requests.get('https://sslapi.hitokoto.cn/?c=a')
+        dict = json.loads(response.text)
+        hitokoto = {
+            'hitokoto': dict['hitokoto'],
+            'from': dict['from'],
+        }
+        return hitokoto
 
