@@ -59,7 +59,7 @@ class IndexView(ListView):
         return data
 
     def get_hitokoto(self):
-        response = requests.get('https://sslapi.hitokoto.cn/?c=a')
+        response = requests.get('https://sslapi.hitokoto.cn/')
         dict = json.loads(response.text)
         hitokoto = {
             'hitokoto': dict['hitokoto'],
@@ -174,7 +174,7 @@ class PostDetailView(DetailView):
 
 
     def get_hitokoto(self):
-        response = requests.get('https://sslapi.hitokoto.cn/?c=a')
+        response = requests.get('https://sslapi.hitokoto.cn/')
         dict = json.loads(response.text)
         hitokoto = {
             'hitokoto': dict['hitokoto'],
