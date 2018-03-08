@@ -4,7 +4,6 @@ from django.urls import reverse
 import markdown
 from django.utils.html import strip_tags
 import requests
-import django.utils.timezone as timezone
 
 
 class Category(models.Model):
@@ -27,7 +26,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=70)
     body = models.TextField()
-    created_time = models.DateTimeField(default=timezone.now)
+    created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
     excerpt = models.CharField(max_length=200, blank=True)
     category = models.ForeignKey(Category)
