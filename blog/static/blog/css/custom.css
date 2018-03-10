@@ -76,6 +76,17 @@ hr {
 	text-decoration: underline;
 }
 
+main {
+	float: left;
+    display: inline-block;
+}
+
+aside {
+	float: left;
+    display: inline-block;
+	margin-bottom: 20px;
+}
+
 
  
 body {
