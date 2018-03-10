@@ -3,6 +3,7 @@ $.fn.scrollFix = function (opt) {
 
     var $window = $(window),
         $this = $(this),
+		thisWidth = $(this).width(),
         windowHeight,
         scrollTop,
         thisHeight,
@@ -25,7 +26,8 @@ $.fn.scrollFix = function (opt) {
             if (scrollTop + windowHeight > topHeight + thisHeight + bottomDis) {
                 $(this).css({
                     position: 'fixed',
-                    bottom: bottomDis
+                    bottom: bottomDis,
+					width: thisWidth
                 });
             } else {
                 $(this).css({
