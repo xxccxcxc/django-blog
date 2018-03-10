@@ -3,7 +3,7 @@ $.fn.scrollFix = function (opt) {
 
     var $window = $(window),
         $this = $(this),
-		thisWidth = $(this).width(),
+		thisWidth = $(this).outerWidth(true),
         windowHeight,
         scrollTop,
         thisHeight,
