@@ -23,6 +23,14 @@ class Tag(models.Model):
         ordering = ['-name']
 
 
+class SiteLink(models.Model):
+    name = models.CharField(max_length=20)
+    url = models.URLField()
+
+    def __str__(self):
+        return self.name
+
+
 class Post(models.Model):
     title = models.CharField(max_length=70)
     body = models.TextField()
