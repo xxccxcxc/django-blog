@@ -90,16 +90,18 @@ main {
 
  
 body {
-	background-image: url(http://p1zbvcs07.bkt.clouddn.com/00001.jpg);
+	/*background-image: url(http://p1zbvcs07.bkt.clouddn.com/00001.jpg);*/
+	background-image: url(http://p1zbvcs07.bkt.clouddn.com/00042.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	background-position: center -40px;
+	/*background-position: center -40px;*/
+	background-position: center;
 }
  
 .biggest {
 	background-color: white;
-	opacity: 0.80;
+	opacity: 0.70;
 }
 
 .pagination a {
