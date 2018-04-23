@@ -12,6 +12,10 @@ def get_recent_posts(num=5):
 def archives():
     return Post.objects.dates('created_time', 'month', order='DESC')
 
+@register.simple_tag()
+def get_archive_cnt(date):
+	return len(Post.objects.filter(created_time__year = date.year, created_time__month = date.month))
+	
 @register.simple_tag
 def get_categories():
     return Category.objects.annotate(num_posts=Count('post')).filter(num_posts__gt=0)

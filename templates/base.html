@@ -161,8 +161,9 @@
 					{% archives as date_list %}
                     <ul>
 						{% for date in date_list %}
+						{% get_archive_cnt date as cnt %}
                         <li>
-                            <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
+                            <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月 ({{ cnt }})</a>
                         </li>
 						{% empty %}
 						暂无归档！
