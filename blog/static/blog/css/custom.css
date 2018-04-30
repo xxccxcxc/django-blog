@@ -88,7 +88,7 @@ main {
 }
 
 body {
-	background-image: url(http://p1zbvcs07.bkt.clouddn.com/back003.jpg);
+	background-image: url(http://p1zbvcs07.bkt.clouddn.com/back004.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -97,7 +97,7 @@ body {
  
 .biggest {
 	background-color: white;
-	opacity: 0.70;
+	opacity: 0.75;
 }
 
 .pagination a {
