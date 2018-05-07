@@ -1,0 +1,60 @@
+{% extends 'substation_base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+	{% for post in post_list %}
+		<article class="post post-{{ post.pk }}">
+			<header class="entry-header">
+				<h1 class="entry-title">
+					<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+				</h1>
+				<div class="entry-meta">
+					<span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+					<span>
+						<a href="#">
+							<time class="entry-date" datetime="{{ post.created_time }}">{{ post.created_time | date:"Y-m-d" }}</time>
+						</a>
+					</span>
+				</div>
+			</header>
+			<div class="entry-content clearfix">
+				<p>{{ post.excerpt }}</p>
+				<div class="read-more cl-effect-14">
+					<a href="{{ post.get_absolute_url }}" class="more-link">阅读全文 <span class="meta-nav">→</span></a>
+				</div>
+			</div>
+		</article>
+	{% empty %}
+		<div class="no-post">暂时还没有发布的文章</div>
+	{% endfor %}
+	{% if is_paginated %}
+			<div class="pagination">
+			{% if first %}
+				<a href="?page=1">&nbsp;1</a>
+			{% endif %}
+			{% if left %}
+				{% if left_has_more %}
+					<span>&nbsp;...</span>
+				{% endif %}
+				{% for i in left %}
+					<a href="?page={{ i }}">&nbsp;{{ i }}</a>
+				{% endfor %}
+			{% endif %}
+				<a href="?page={{ page_obj.number }}" style="color: red">&nbsp;{{ page_obj.number }}</a>
+			{% if right %}
+				{% for i in right %}
+					<a href="?page={{ i }}">&nbsp;{{ i }}</a>
+				{% endfor %}
+				{% if right_has_more %}
+					<span>&nbsp;...</span>
+				{% endif %}
+				{% if last %}
+					<a href="?page={{ paginator.num_pages }}">&nbsp;{{ paginator.num_pages }}</a>
+				{% endif %}
+			{% endif %}
+			</div>
+	{% endif %}
+{% endblock main %}
