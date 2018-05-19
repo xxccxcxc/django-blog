@@ -2,4 +2,5 @@ db.sqlite3
 whoosh_index
 *.py[cod]
 fabfile.py
-migrations
+blog/migrations
+substation/migrations
