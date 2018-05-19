@@ -57,7 +57,7 @@
 	});
 	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 	</script>
-	<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	
 	<!-- 百度自动推送 -->
 	<script type="text/javascript">
@@ -132,7 +132,9 @@
             <aside class="col-md-4 side">
 				{% block toc %}
 				{% endblock toc %}
-                <div class="widget widget-recent-posts">
+				
+				<div class="widget widget-content">
+				<!--widget-recent-posts-->
                     <h3 class="widget-title">最新文章</h3>
 					{% get_recent_posts as recent_post_list %}
                     <ul>
@@ -145,7 +147,9 @@
 						{% endfor %}
                     </ul>
                 </div>
-                <div class="widget widget-archives">
+				
+				<div class="widget widget-content">
+				<!--widget-archives-->
                     <h3 class="widget-title">归档</h3>
 					{% archives as date_list %}
                     <ul>
@@ -160,7 +164,8 @@
                     </ul>
                 </div>
 
-                <div class="widget widget-category">
+				<div class="widget widget-content">
+                <!--widget-category-->
                     <h3 class="widget-title">分类</h3>
 					{% get_categories as category_list %}
                     <ul>
@@ -173,8 +178,8 @@
 						{% endfor %}
                     </ul>
                 </div>
-
-                <div class="widget widget-tag-cloud">
+				
+				<div class="widget widget-tag-cloud">
                     <h3 class="widget-title">标签云</h3>
 					{% get_tags as tag_list %}
 					<ul>
