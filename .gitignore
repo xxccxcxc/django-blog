@@ -4,3 +4,4 @@ whoosh_index
 fabfile.py
 blog/migrations
 substation/migrations
+comments/migrations
