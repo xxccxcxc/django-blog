@@ -53,7 +53,7 @@ class Post(models.Model):
         self.save(update_fields=['views'])
 
     def baidu_push(self):
-        url = 'http://data.zz.baidu.com/urls?site=xxccxcxc.top&token=oE6j072TMctOd1lt'
+        url = 'http://data.zz.baidu.com/urls?site=xxccxcxc.top&token=EMZiK8Dc9bKUiUqE'
         headers = {
             'Content-Type': 'text/plain'
         }
