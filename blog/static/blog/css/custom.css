@@ -88,11 +88,11 @@ main {
 }
 
 body {
-	background-image: url(https://i.loli.net/2018/11/23/5bf78bba1f2cf.jpg);
+	background-image: url(https://i.loli.net/2019/05/30/5cef310a3ac2564859.png);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	background-position: center;
+	background-position: 0 0;
 }
  
 .biggest {
